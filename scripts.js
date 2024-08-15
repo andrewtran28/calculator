@@ -13,6 +13,8 @@ const displayScreen = document.querySelector(".display");
 //button connections
 const btn_clear = document.querySelector("#clear");
 const btn_equal = document.querySelector("#equal");
+const btn_backspace = document.querySelector("#backspace");
+const btn_plus_minus = document.querySelector("#plus_minus");
 const btn_plus = document.querySelector("#plus");
 const btn_minus = document.querySelector("#minus");
 const btn_multiply = document.querySelector("#multiply");
@@ -59,22 +61,22 @@ function calculate (num1, symbol, num2) {
         return result;
 }
 
-function firstInput (numA) {
-    if (numerical.includes(input)) {
-        display(numA);
-
-        if (operator.includes(input)) {
-            operator(input);
-        }
-    }
-}
-
 function clear() {
     numA = "";
     numB = "";
     output = "";
     inputStage = 1;
     displayScreen.textContent = "0";
+}
+
+function backspace() {
+    checkDisplay = displayScreen.textContent;
+    displayScreen.textContent = checkDisplay.slice(0, -1); 
+}
+
+function plus_minus() {
+    checkDisplay = displayScreen.textContent;
+    displayScreen.textContent *= -1; 
 }
 
 function number(num) {
@@ -118,6 +120,8 @@ btn_divide.addEventListener("click", ()     => operation("/"));
 
 //other buttons
 btn_clear.addEventListener("click", () => clear());
+btn_backspace.addEventListener("click", () => backspace());
+btn_plus_minus.addEventListener("click", () => plus_minus());
 
 btn_decimal.addEventListener ("click", () => {
     checkDisplay = displayScreen.textContent;
