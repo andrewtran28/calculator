@@ -3,6 +3,7 @@ let numA;
 let numB;
 let operator = "+-*/";  //Just guessing...operator will be a string to see which operator was chosen, check javaScript "palindrone" exercise.
 let numerical = "0123456789"
+const pi = Math.PI;
 
 function add (a,b) {
     return a + b;
