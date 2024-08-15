@@ -1,7 +1,10 @@
 body {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: antiquewhite;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
 button {
@@ -18,52 +21,61 @@ button {
 .display {
     display: flex;
     background-color: rgb(162, 171, 147);
-    height: 60px;
-    width: 229px;
+    height: 50px;
+    width: 232px;
     justify-content: right;
-    align-items: end;
+    align-items: center;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 50px;
+    font-size: 30px;
     margin: 5px 0;
+    padding: 0 3px;
 }
 
 .calc-buttons {
-    /* border: 1px solid pink; */
+    /* border: 1px solid aqua; */
     display: flex;
 }
 
 .calc-rows {
     /* border: 1px solid blue; */
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
-    width: 176px;
+    width: 180px;
 }
 
 .bottom-row {
     /* border: 1px solid red; */
     display: flex;
+    justify-content: space-between;
 }
 
 #zero {
-    flex-grow: 2;
+    /* flex-grow: 2; */
+    /* margin-right: 9px; */
 }
 
 .calc-column {
     /* border: 1px solid green; */
     display: flex;
     flex-direction: column;
+    margin: 0 6px;
 }
 
 #minus {
-    flex-grow: 0;
+    /* flex-grow: 0; */
 }
 
 #plus {
-    flex-grow: 2;
+    flex-grow: 1;
 }
 
 #equal {
     flex-grow: 2;
     background-color: orange;
+    border: 1px solid gray;
+    border-radius: 3px;
+}
+
+#equal:hover {
+    background-color: rgb(205, 133, 0);
 }

@@ -1,12 +1,12 @@
 //global variables
-const pi = Math.PI;
 let output;
-let inputStage = 0; //Three stages: numA, operator, numB
+let inputStage = 0; //Two input stages: Input for numA, then pressing an operator changes to Input for numB
+let checkDisplay;
 let numA;
 let numB;
 let operate;
 let operator = "+-*/";  //Just guessing...operator will be a string to see which operator was chosen, check javaScript "palindrone" exercise.
-let numerical = "0123456789"
+// let numerical = "0123456789"
 
 const displayScreen = document.querySelector(".display");
 
@@ -47,23 +47,16 @@ function divide (dividend, quotient) {
 }
 
 function calculate (num1, symbol, num2) {
+    let result;
+    console.log("Calculate: " +num1 + operate + num2);
     switch (symbol) {
-        case "+": add(num1, num2);
-        case "-": subtract(num1, num2);
-        case "*": multiply(num1, num2);
-        case "/": divide(num1, num2);
+        case "+": result = add(num1, num2); break;
+        case "-": result = subtract(num1, num2); break;
+        case "*": result = multiply(num1, num2); break;
+        case "/": result = divide(num1, num2); break;
     }
-}
-
-console.log("Add 1+2=" + add(1,2));
-console.log("Subtract 2-1=" + subtract(2,1));
-console.log("Multiply 3*4=" + multiply(3,3));
-console.log("Divide 10/5=" + divide(10,5));
-
-function display(){
-    if (numerical.includes(input)) {
-        //add to end of display
-    }
+    console.log("Result: " + result);
+        return result;
 }
 
 function firstInput (numA) {
@@ -81,30 +74,53 @@ function clear() {
     numB = "";
     output = "";
     inputStage = 1;
-    displayScreen.textContent = "";
+    displayScreen.textContent = "0";
+}
+
+function number(num) {
+    checkDisplay = displayScreen.textContent;
+    if (checkDisplay === "0") {
+        displayScreen.textContent = num;
+    }
+
+    else {
+        displayScreen.textContent += num;
+    }
+}
+
+function operation(symbol) {
+    checkDisplay = displayScreen.textContent;
+    if (!isNaN(checkDisplay)) {
+        numA = parseFloat(checkDisplay);
+        operate = symbol;
+        inputStage = 1;
+        displayScreen.textContent = "0";
+    }
 }
 
 //numerical buttons
-btn_zero.addEventListener ("click", ()   => displayScreen.textContent += "0");
-btn_one.addEventListener ("click", ()    => displayScreen.textContent += "1");
-btn_two.addEventListener ("click", ()    => displayScreen.textContent += "2");
-btn_three.addEventListener ("click", ()  => displayScreen.textContent += "3");
-btn_four.addEventListener ("click", ()   => displayScreen.textContent += "4");
-btn_five.addEventListener ("click", ()   => displayScreen.textContent += "5");
-btn_six.addEventListener ("click", ()    => displayScreen.textContent += "6");
-btn_seven.addEventListener ("click", ()  => displayScreen.textContent += "7");
-btn_eight.addEventListener ("click", ()  => displayScreen.textContent += "8");
-btn_nine.addEventListener ("click", ()   => displayScreen.textContent += "9");
+btn_zero.addEventListener("click", ()   => number("0"));
+btn_one.addEventListener("click", ()    => number("1"));
+btn_two.addEventListener("click", ()    => number("2"));
+btn_three.addEventListener("click", ()  => number("3"));
+btn_four.addEventListener("click", ()   => number("4"));
+btn_five.addEventListener("click", ()   => number("5"));
+btn_six.addEventListener("click", ()    => number("6"));
+btn_seven.addEventListener("click", ()  => number("7"));
+btn_eight.addEventListener("click", ()  => number("8"));
+btn_nine.addEventListener("click", ()   => number("9"));
 
 //operator buttons
-btn_clear.addEventListener ("click", () => clear());
+btn_plus.addEventListener("click", ()       => operation("+"));
+btn_minus.addEventListener("click", ()      => operation("-"));
+btn_multiply.addEventListener("click", ()   => operation("*"));
+btn_divide.addEventListener("click", ()     => operation("/"));
 
-btn_plus.addEventListener ("click", () => {
-    // if()
-})
+//other buttons
+btn_clear.addEventListener("click", () => clear());
 
 btn_decimal.addEventListener ("click", () => {
-    let checkDisplay = displayScreen.textContent;
+    checkDisplay = displayScreen.textContent;
     if (!checkDisplay.includes(".")) {
         if(checkDisplay === "") {
             displayScreen.textContent += "0.";
@@ -113,5 +129,14 @@ btn_decimal.addEventListener ("click", () => {
         else {
             displayScreen.textContent += ".";
         }
+    }
+});
+
+btn_equal.addEventListener("click", () => {
+    checkDisplay = displayScreen.textContent;
+    if ((inputStage == 1) && (!isNaN(checkDisplay))) {
+        numB = parseFloat(checkDisplay);
+        displayScreen.textContent = calculate(numA, operate, numB);
+        inputStage = 0;
     }
 });
