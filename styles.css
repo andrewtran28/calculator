@@ -1,10 +1,17 @@
 body {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
     background-color: antiquewhite;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+h1 {
+    text-align: center;
 }
 
 button {
@@ -16,13 +23,15 @@ button {
 .calculator-cont {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .display {
     display: flex;
+    border: 1px solid gray;
     background-color: rgb(162, 171, 147);
     height: 50px;
-    width: 232px;
+    width: 230px;
     justify-content: right;
     align-items: center;
     font-family: 'Courier New', Courier, monospace;
@@ -32,28 +41,24 @@ button {
 }
 
 .calc-buttons {
-    /* border: 1px solid aqua; */
     display: flex;
 }
 
 .calc-rows {
-    /* border: 1px solid blue; */
     display: flex;
     justify-content: space-between;
     width: 180px;
 }
 
 .bottom-row {
-    /* border: 1px solid red; */
     display: flex;
     justify-content: space-between;
 }
 
 .calc-column {
-    /* border: 1px solid green; */
     display: flex;
     flex-direction: column;
-    margin: 0 6px;
+    margin-left: 6px;
 }
 
 #equal {
@@ -65,4 +70,14 @@ button {
 
 #equal:hover {
     background-color: rgb(205, 133, 0);
+}
+
+.footer {
+        display: flex;
+        justify-content: center;
+        background-color: #28455f;
+        color: #e5e7eb;
+        padding: 10px 0;
+        bottom: 0;
+        width: 100%;
 }
