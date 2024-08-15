@@ -49,24 +49,11 @@ button {
     justify-content: space-between;
 }
 
-#zero {
-    /* flex-grow: 2; */
-    /* margin-right: 9px; */
-}
-
 .calc-column {
     /* border: 1px solid green; */
     display: flex;
     flex-direction: column;
     margin: 0 6px;
-}
-
-#minus {
-    /* flex-grow: 0; */
-}
-
-#plus {
-    flex-grow: 1;
 }
 
 #equal {
